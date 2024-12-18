@@ -5,7 +5,7 @@ from socket import AF_INET6
 import requests
 import requests.packages.urllib3.util.connection as requests_cx
 
-find_ip_url = 'http://icanhazip.com'
+find_ip_url = 'http://checkip.amazonaws.com'
 find_ip_url = os.environ.get('IPAPIURL',find_ip_url)
 
 def getMyIP(url=find_ip_url,ipv6=False):

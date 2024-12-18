@@ -78,14 +78,14 @@ def parse_args():
     parser.add_argument(
         '--create-record', 
         help=argparse.SUPPRESS,
-        action=privaction,
+        action='store_true',
         default=False
     )
 
     parser.add_argument(
         '--delete-record', 
         help=argparse.SUPPRESS,
-        action=privaction,
+        action='store_true',
         default=False
     )
 
@@ -121,7 +121,7 @@ def set_my_cf_dns():
     zone = cf.zonename
 
     cfip = cf.get(fqdn)
-
+    
     if not cfip:
         print(f'The {rectype} record for "{fqdn}" does not exist in the CloudFlare zone "{zone}"')
     else:
@@ -129,7 +129,7 @@ def set_my_cf_dns():
     
     if not args.query:
         try:
-            if args.delete_record:
+            if args.delete_record and cfip:
                 print(f'\nRemoving the {rectype} record for "{fqdn}" from the Cloudflare zone "{zone}"')
                 cf.rem(fqdn)
             
@@ -146,6 +146,7 @@ def set_my_cf_dns():
 
         except Exception as e:
             print(f'\n*****Error: {str(e)}\n')
+            raise(e)
             exit(1)
     else:
         print(f'\nQuery only - no changes were made.')
