@@ -114,7 +114,9 @@ Both ipv4 **A** and ipv6 **AAAA** DNS records are supported by `setmycfdns`.  To
 
 CloudFlare credentials (API keys) are required. You will need to generate these in your CloudFlare account.
 
-Generally a `.cloudflare.cfg` file in the users home directory or the current working directory, but there are several options. The format is dictated by the `python-cloudflare` API library and [details can be found here.](https://github.com/cloudflare/python-cloudflare/blob/master/README.md)
+Generally a `.cloudflare.cf` file in the users home directory or the current working directory, but there are several options. The format is dictated by the `python-cloudflare` API library and [details can be found here.](https://github.com/cloudflare/python-cloudflare/blob/master/README.md)  These are a TOML formated file with a CloudFlare tier and values for email and api_key.
+
+Alternative to the `.cloudflare.cf' file you can pass credentials using the environment variables CLOUDFLARE_EMAIL and CLOUDFLARE_KEY.
 
 ***Remember to always protect these API keys.***
 
