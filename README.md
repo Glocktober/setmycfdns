@@ -49,7 +49,7 @@ setmycfdns gunville 2022 v1
 
 #### Automatic IP detection:
 
-By default `setmyip` automatically detects the public IP address by sending an HTTP request to [icanhazip.com](http://icanhazip.com). This site returns the IP address of the sender.
+By default `setmyip` automatically detects the public IP address by sending an HTTP request to [icanhazip.com](http://checkip.amazonaws.com). This site returns the IP address of the sender.
 
 You can optionally use a different site to autodetect the public ip by setting the environment variable `IPAPIURL` to that URL:
 ```bash
