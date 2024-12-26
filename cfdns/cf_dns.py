@@ -1,3 +1,4 @@
+copyright='gunville 2024'
 import os
 from pathlib import Path
 import cloudflare

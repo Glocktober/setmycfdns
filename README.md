@@ -10,7 +10,7 @@ This program can be used to update CloudFlare zone records when a server reboots
 ### Limitations
 `setmycfdns` will update ***existing*** DNS records - the records must ***already exist*** in your CloudFlare zone. 
 
-`setmycfdns` doesn't create or remove records.  
+`setmycfdns` doesn't create or remove records (well... look at the undocumented options --create-record and --delete-record)
 
 This is by design to prevent things from going wrong.
 
@@ -45,18 +45,20 @@ optional arguments:
   -z ZONE, --zone ZONE  Cloudflare Zone to update (optional)
   -6                    Update AAAA record (default is A record)
 
-setmycfdns gunville 2022 v1
+setmycfdns gunville 2024 v2
 
 #### Automatic IP detection:
 
-By default `setmyip` automatically detects the public IP address by sending an HTTP request to [icanhazip.com](http://checkip.amazonaws.com). This site returns the IP address of the sender.
+By default `setmyip` automatically detects the public IP address by sending an HTTP request to [ipv4.icanhazip.com](http://ipv4.icanhazip.com). This site returns the IPv4 address of the sender.
 
 You can optionally use a different site to autodetect the public ip by setting the environment variable `IPAPIURL` to that URL:
 ```bash
 % IPAPIURL='http://api.ipify.org'
 % setmycfdns
-```
-When ipv6 is selected with the `-6` switch automatic detection uses the ipv6 stack.  [icanhazip.com](http://icanhazip.com) works with both ipv4 and ipv6.
+````
+You can do the same for IPv6 using `IPV6APIURL`.
+
+When ipv6 is selected with the `-6` switch automatic detection uses the ipv6 stack.  [ipv6.icanhazip.com](http://ipv6.icanhazip.com).
 
 If your host has multiple ip addresses or uses a proxy for web requests you will need to provide the ip address to use with the `--ip IP` command line switch.
 
@@ -114,7 +116,7 @@ Both ipv4 **A** and ipv6 **AAAA** DNS records are supported by `setmycfdns`.  To
 
 CloudFlare credentials (API keys) are required. You will need to generate these in your CloudFlare account.
 
-Generally a `.cloudflare.cfg` file in the users home directory or the current working directory, but there are several options. The format is dictated by the `python-cloudflare` API library and [details can be found here.](https://github.com/cloudflare/python-cloudflare/blob/master/README.md)
+Generally a `.cloudflare.cf` file in the users home directory or the current working directory, but there are several options. The format is dictated by the `python-cloudflare` API library and [details can be found here.](https://github.com/cloudflare/python-cloudflare/blob/master/README.md)
 
 ***Remember to always protect these API keys.***
 
